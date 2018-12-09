@@ -1,0 +1,7 @@
+{
+  "name": "runnerbox",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

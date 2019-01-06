@@ -1,0 +1,119 @@
+<!--
+  Generated template for the ProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="secondary">
+        <ion-title>Back</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div *ngIf="product.shop.category == 'Foods'">
+        <ion-slides *ngIf="product.foodImage.length == 0">
+            <ion-slide class="img_container">
+                <img src="assets/imgs/food_place.svg">
+            </ion-slide>
+        </ion-slides>
+        <ion-slides *ngIf="product.foodImage.length > 0" pager class="product_imgs">
+            <ion-slide class="img_container" *ngFor="let image of product.foodImage">
+                <img src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{image.slice(0)}}">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div *ngIf="product.shop.category == 'Electronics'">
+        <ion-slides *ngIf="product.electronicImage.length == 0">
+            <ion-slide class="img_container">
+                <img src="assets/imgs/electronic_place.svg">
+            </ion-slide>
+        </ion-slides>
+        <ion-slides *ngIf="product.electronicImage.length > 0" pager class="product_imgs">
+            <ion-slide class="img_container" *ngFor="let image of product.electronicImage">
+                <img src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{image.slice(0)}}">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div *ngIf="product.shop.category == 'Clothes'">
+        <ion-slides *ngIf="product.clotheImage.length == 0">
+            <ion-slide class="img_container">
+                <img src="assets/imgs/clothe_place.svg">
+            </ion-slide>
+        </ion-slides>
+        <ion-slides *ngIf="product.clotheImage.length > 0" pager class="product_imgs">
+            <ion-slide class="img_container" *ngFor="let image of product.clotheImage">
+                <img src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{image.slice(0)}}">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div *ngIf="product.shop.category == 'Gifts'">
+        <ion-slides *ngIf="product.giftImage.length == 0">
+            <ion-slide class="img_container">
+                <img src="assets/imgs/gift_place.svg">
+            </ion-slide>
+        </ion-slides>
+        <ion-slides *ngIf="product.giftImage.length > 0" pager class="product_imgs">
+            <ion-slide class="img_container" *ngFor="let image of product.giftImage">
+                <img src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{image.slice(0)}}">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div *ngIf="product.shop.category == 'Books'">
+        <ion-slides *ngIf="product.bookImage.length == 0">
+            <ion-slide class="img_container">
+                <img src="assets/imgs/book_place.svg">
+            </ion-slide>
+        </ion-slides>
+        <ion-slides *ngIf="product.bookImage.length > 0" pager class="product_imgs">
+            <ion-slide class="img_container" *ngFor="let image of product.bookImage">
+                <img src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{image.slice(0)}}">
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="info">
+        <p class="price">₹{{product.price}}</p>
+        <h5 class="title">{{product.name}}</h5>
+        <p class="category">{{product.category}}
+            <ion-icon *ngIf="wishListsIds.indexOf(product._id) == -1" (click)="addToWishList(product)" name="ios-heart-outline"></ion-icon>
+            <ion-icon *ngIf="wishListsIds.indexOf(product._id) != -1" (click)="removeFromWishList(product)" name="ios-heart"></ion-icon>
+        </p>
+        
+    </div>
+    <div class="sizes" *ngIf="product.size">
+            <p>Size</p>
+            <div class="size_container">
+                <div class="size" *ngFor="let size of product.size" (click)="sizeSelect(size)">{{size}}</div>
+            </div>
+        </div>
+    <div class="description" *ngIf="product.description">
+        <p>Description</p>
+        <p class="desc">{{product.description}}</p>
+    </div>
+    <div class="shop_details">
+        <h4>Shop Details:</h4>
+        <h3>{{product.shop.name}}</h3>
+        <p>{{product.shop.address.address_1}}</p>
+        <p>{{product.shop.address.address_2}}</p>
+        <p>{{product.shop.address.address_3}} {{product.shop.address.pincode}}</p>
+        <p>Contact: {{product.shop.phone}}</p>
+    </div>
+
+</ion-content>
+<div class="bottom">
+    <div class="add" (click)="addToCart(product)">
+        <p>ADD TO CART</p>
+    </div>
+    <div *ngIf="isLoggedIn" class="buy" (click)="buy(product)">
+        <p>BUY NOW</p>
+    </div>
+    <div [hidden]="isLoggedIn" class="buy">
+        <p (click)="login()">LOGIN</p>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<!--
+  Generated template for the ElectronicPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+        <ion-title>{{shop.name}}</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="search_bar">
+            <ion-searchbar (search)="onSearch($event)" (ionInput)="onInput($event)"  placeholder="Search brand or product" [(ngModel)]="myInput">
+            </ion-searchbar>
+            <div class="filter" (click)="filter()">
+                <ion-icon name="funnel">
+                    <ion-select (ionChange)="setSelectedCat()" *ngIf="electronics" [(ngModel)]="cat" interface="popover" #selection>     
+                    <ion-option *ngFor="let cat of electronic_cat" [value]="cat">{{cat}}</ion-option>
+                    </ion-select>
+                </ion-icon>
+            </div>
+        </div>
+    <ion-spinner [hidden]="electronics"></ion-spinner>
+    <div class="empty" *ngIf="electronics && electronics.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No data available !</h4>
+    </div>
+    <div class="electronics" *ngIf="electronics">
+        <div class="electronics_grid">
+            <div class="electronic" *ngFor="let electronic of electronics">
+                <ion-icon *ngIf="wishListsIds.indexOf(electronic._id) == -1" (click)="addToWishList(electronic)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(electronic._id) != -1" (click)="removeFromWishList(electronic)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(electronic)">
+                    <img *ngIf="electronic.electronicImage.length==0" src="assets/imgs/electronic_place.svg">
+                    <img *ngIf="electronic.electronicImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{electronic.electronicImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(electronic)">{{electronic.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of electronic.category">{{cat}}</p>
+                <h4 class="price">₹{{electronic.price}}</h4>
+                <button class="add" (click)=addToCart(electronic)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

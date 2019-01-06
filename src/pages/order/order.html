@@ -1,0 +1,70 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Delivery</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-spinner [hidden]="user"></ion-spinner>
+    <div class="address" [hidden]="edit" *ngIf="user">
+        <h6>My Address<ion-icon (click)="editAddress()" name="md-create"></ion-icon>
+        </h6>
+        <hr>
+        <div *ngIf="user.address">
+            <p>{{user.address.address_1}}</p>
+            <p>{{user.address.address_2}}</p>
+            <p>{{user.address.address_3}}</p>
+            <p>{{user.address.state}}</p>
+            <p>{{user.address.pincode}}</p>
+        </div>
+    </div>
+    <div class="addressForm" *ngIf="edit">
+        <form [formGroup]="addressForm" (ngSubmit)="changeAddress()">
+            <ion-list inset class="no-border">
+                <div>
+                    <label>Flat no., Building name</label>
+                    <input type="text" class="formControl" formControlName="address_1">
+                </div>
+                <div>
+                    <label>Locality, area or street</label>
+                    <input type="text" class="formControl" formControlName="address_2">
+                </div>
+                <div>
+                    <label>City</label>
+                    <input type="text" class="formControl" formControlName="address_3">
+                </div>
+                <div>
+                    <label>State</label>
+                    <input type="text" class="formControl" formControlName="state">
+                </div>
+                <div>
+                    <label>Pincode</label>
+                    <input type="text" class="formControl" formControlName="pincode">
+                </div>
+                <button [disabled]="!addressForm.valid" class="submit" color="secondary">Change Address</button>
+            </ion-list>
+        </form>
+    </div>
+    <div class="address" [hidden]="edit" *ngIf="user">
+        <h6>Items({{items.length}})
+        </h6>
+        <hr>
+        <div>
+            <p>Total Price<span>₹{{total}}</span></p>
+        </div>
+    </div>
+    <div class="bottom" [hidden]="edit">
+        <div class="proceed">
+            <p (click)="placeOrder()">PLACE ORDER</p>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,52 @@
+<!--
+  Generated template for the BookPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+        <ion-title>{{shop.name}}</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="search_bar">
+            <ion-searchbar (search)="onSearch($event)" (ionInput)="onInput($event)"  placeholder="Search brand or product" [(ngModel)]="myInput">
+            </ion-searchbar>
+            <div class="filter" (click)="filter()">
+                <ion-icon name="funnel">
+                    <ion-select (ionChange)="setSelectedCat()" *ngIf="books" [(ngModel)]="cat" interface="popover" #selection>     
+                    <ion-option *ngFor="let cat of book_cat" [value]="cat">{{cat}}</ion-option>
+                    </ion-select>
+                </ion-icon>
+            </div>
+        </div>
+    <ion-spinner [hidden]="books"></ion-spinner>
+    <div class="empty" *ngIf="books && books.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No data available !</h4>
+    </div>
+    <div class="books" *ngIf="books">
+        <div class="books_grid">
+            <div class="book" *ngFor="let book of books">
+                <ion-icon *ngIf="wishListsIds.indexOf(book._id) == -1" (click)="addToWishList(book)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(book._id) != -1" (click)="removeFromWishList(book)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(book)">
+                    <img *ngIf="book.bookImage.length==0" src="assets/imgs/book_place.svg">
+                    <img *ngIf="book.bookImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{book.bookImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(book)">{{book.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of book.category">{{cat}}</p>
+                <h4 class="price">₹{{book.price}}</h4>
+                <button class="add" (click)=addToCart(book)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

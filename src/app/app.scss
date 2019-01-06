@@ -14,3 +14,51 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.head{
+    background: #3DBFA1;
+    h6{
+        margin: 0;
+        color: white;
+        font-family: 'Poppins';
+        padding: 25px 0px 0px 25px;
+    }
+    p{
+        margin: 0;
+        color: white;
+        opacity: 0.8;
+        font-family: 'Poppins';
+        padding: 0px 0px 30px 25px;
+    }
+}
+.my_orders{
+    color: white;
+    background: #379683;
+    p{
+        font-family: 'Poppins';
+        font-size: 0.9em;
+        ion-icon{
+            padding-right: 15px;
+        }
+        margin: 0;
+        padding: 15px 0px 10px 25px;
+    }
+}
+.menu_items{
+    margin-top: 15px;
+    color: #3DBFA1;
+    
+    button{
+        display: flex;
+        font-family: 'Poppins';
+        color: gray;
+        padding: 0px 0px 0px 25px;
+        font-size: 0.9em;
+        ion-icon{
+            color: #3DBFA1;
+            font-size: 1.5em !important;
+            padding-right: 15px;
+            position: relative;
+            top: 2px;
+        }
+    }
+}

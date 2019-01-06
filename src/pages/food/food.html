@@ -1,0 +1,68 @@
+<!--
+  Generated template for the FoodPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content>
+    <ion-header no-border>
+        
+        <ion-navbar transparent>
+            <button (click)="openCart()" class="cart" ion-button>
+                <ion-icon name="ios-cart-outline"></ion-icon>
+            </button>
+        </ion-navbar>
+        
+    </ion-header>
+    <div parallax ratio="50" class="top">
+        <div class="image_container">
+            <img src="assets/imgs/rest_up.jpg">
+        </div>
+        <div class="blur"></div>
+    </div>
+    <div class="title">
+        <h5>{{restaurant.name}}</h5>
+        <p>{{restaurant.address.address_1}}</p>
+        <p>{{restaurant.address.address_2}} {{restaurant.address.address_3}} {{restaurant.address.pincode}}</p>
+        <h6 *ngIf="!restaurant.open" class="closed">Closed</h6>
+        <h6 *ngIf="restaurant.open" class="open">Open Now</h6>
+    </div>
+    <!--
+    -->
+    <h6 class="menu"><h5>Menu</h5></h6>
+    <ion-toolbar>
+            <ion-segment [(ngModel)]="type" color="secondary" (ionChange)="segmentChanged($event)">
+
+                <ion-segment-button value="nonveg">
+                    <p>Non-Veg</p>
+                </ion-segment-button>
+                <ion-segment-button value="veg">
+                    <p>Veg</p>
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+    <ion-spinner [hidden]="foods"></ion-spinner>
+    <div class="empty" *ngIf="foods && filteredFoods.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No data available !</h4>
+    </div>
+    <div class="foods" *ngIf="foods">
+        <div class="foods_grid">
+            <div class="food" *ngFor="let food of filteredFoods">
+                <ion-icon *ngIf="wishListsIds.indexOf(food._id) == -1" (click)="addToWishList(food)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(food._id) != -1" (click)="removeFromWishList(food)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(food)">
+                    <img *ngIf="food.foodImage.length==0" src="assets/imgs/food_place.svg">
+                    <img *ngIf="food.foodImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{food.foodImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(food)">{{food.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of food.category">{{cat}}</p>
+                <h4 class="price">₹{{food.price}}</h4>
+                <button class="add" (click)=addToCart(food)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

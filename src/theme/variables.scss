@@ -34,8 +34,8 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #379683,
+  secondary:  #3DBFA1,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
@@ -86,3 +86,18 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: bold;
+  font-weight: 800;
+  src: url('../assets/fonts/Poppins/Poppins-Bold.ttf');
+}

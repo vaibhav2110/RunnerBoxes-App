@@ -1,0 +1,182 @@
+@font-face {
+    font-family: Poppins;
+    src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf) format("ttf");
+    font-weight: 400
+}
+
+page-restaurants {
+    ion-navbar {
+
+        .cart {
+            background: transparent;
+            position: absolute !important;
+            right: 0px;
+            top: 6px;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .toolbar-title-md {
+            font-size: 1.2em !important;
+            font-weight: 400;
+        }
+
+        ion-title {
+            font-family: Poppins;
+
+        }
+    }
+
+    ion-content {
+        background: #EAEAEA !important;
+        .search_bar {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .searchbar-md .searchbar-search-icon {
+                left: 16px;
+                top: 9px;
+            }
+
+            .searchbar-md .searchbar-input {
+                padding: 4px 50px;
+                border-radius: 8px;
+                background-position: left 8px center;
+                height: auto;
+                font-family: 'Poppins';
+                font-size: 1.2rem;
+                font-weight: 400;
+                line-height: 3rem;
+                color: #141414;
+                background-color: #fff;
+                box-shadow: 0 3px 15px 0px rgba(0, 0, 0, 0.2);
+            }
+        }
+        .spinner-md-crescent circle{
+            stroke: #3DBFA1;
+        }
+        .spinner-crescent circle{
+            stroke-width: 8px;
+        }
+        ion-spinner{
+            color: #3DBFA1;
+            font-size: 1.4em;
+            position: relative;
+            margin-left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: 20px;
+        }
+    }
+    .empty{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 60%;
+            margin-top: 10px;
+        }
+        h4{
+            font-family: 'Poppins';
+            color: #3DBFA1;
+        }
+    }
+
+    .restaurants {
+        .restaurants_grid {
+            margin-top: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .restaurant {
+            margin: 2%;
+            width: 46%;
+            height: auto;
+            background: white;
+            overflow: hidden;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            ion-icon {
+                color: hotpink;
+                font-weight: bold;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                z-index: 9;
+            }
+
+            .img_container {
+                margin: 8px;
+                height: 180px;
+                border-radius: 5px;
+                overflow: hidden;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            .name {
+                font-family: 'Poppins';
+                font-size: 0.9em;
+                font-weight: bold;
+                margin: 0 0 0 8px;
+            }
+
+            .sub_category {
+                color: gray;
+                font-size: 0.7em;
+                margin: 4px 0 0 8px;
+            }
+
+            .price {
+                font-family: 'Poppins';
+                font-size: 0.9em;
+                margin: 5px 0px 10px 8px;
+            }
+
+            .add {
+                background: #3DBFA1;
+                width: 90%;
+                margin-left: 5%;
+                padding: 8px 10px;
+                border-radius: 5px;
+                color: white;
+                font-family: 'Poppins';
+                font-size: 0.8em;
+                margin-bottom: 10px;
+                
+            }
+            
+            h6{
+                font-family: 'Poppins';
+                padding: 0;
+                margin: 0;
+                font-size: 1em;
+                padding-top: 5px;
+                margin-left: 8px;
+                padding-bottom: 8px;
+            }
+            .open{
+                color: #3DBFA1;
+            }
+            .closed{
+                color: indianred;
+            }
+
+        }
+    }
+}

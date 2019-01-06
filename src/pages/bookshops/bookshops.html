@@ -1,0 +1,45 @@
+<!--
+  Generated template for the BookshopsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="secondary">
+        <ion-title>Books Shops</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="search_bar">
+        <ion-searchbar (search)="onSearch($event)" (ionInput)="onInput($event)" placeholder="Search shop by name or category" [(ngModel)]="myInput">
+        </ion-searchbar>
+    </div>
+    <ion-spinner [hidden]="shops"></ion-spinner>
+    <div class="empty" *ngIf="shops && shops.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No data available !</h4>
+    </div>
+    <div class="shops" *ngIf="shops">
+        <div class="shops_grid">
+            <div class="shop" *ngFor="let shop of shops">
+                <div class="img_container" (click)="openShop(shop)">
+                    <img src="assets/imgs/book_place.svg">
+                </div>
+                <h4 class="name" (click)="openShop(shop)">{{shop.name}}</h4>
+                <p class="sub_category">
+                    {{shop.address.address_1}}
+                    <br>
+                    {{shop.address.address_2}}
+                </p>
+                <button class="add" (click)=openShop(shop)>View</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

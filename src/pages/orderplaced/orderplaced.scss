@@ -1,0 +1,26 @@
+page-orderplaced {
+    ion-header{
+        ion-title{
+        font-family: 'Poppins';
+            font-size: 0.9em !important;
+    }
+    }
+    
+    ion-content{
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img{
+                margin-top: 20px;
+                width: 90%;
+            }
+            h5{
+                font-family: 'Poppins';
+                color: #3DBFA1;
+                margin-top: 35px;
+            }
+        }
+    }
+}

@@ -1,0 +1,123 @@
+.pac-container {
+    font-family: 'Poppins' !important;
+}
+
+page-map {
+
+    #map {
+        width: 100%;
+        height: 200px;
+    }
+
+    .gm-fullscreen-control {
+        border-radius: 50% !important;
+
+        img {
+            height: 12px !important;
+            width: 12px !important;
+        }
+    }
+
+    .gm-control-active {
+        border-radius: 50% !important;
+
+        img {
+            height: 10px !important;
+            width: 10px !important;
+        }
+    }
+
+    .gmnoprint {
+
+        div {
+            border-radius: 15% !important;
+        }
+    }
+
+    ion-content {
+        #searchBar {
+            margin-top: 10px;
+            width: 96%;
+            margin-left: 2%;
+            padding: 4px 20px;
+            border-radius: 8px;
+            background-position: left 8px center;
+            height: auto;
+            font-family: 'Poppins';
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 3rem;
+            color: #141414;
+            background-color: #fff;
+            box-shadow: 0 3px 15px 0px rgba(0, 0, 0, 0.2);
+            border: 0;
+            margin-bottom: 10px;
+        }
+
+        .my_content {
+            margin-top: 15px;
+            width: 92%;
+            margin-left: 4%;
+            font-family: 'Poppins';
+
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .location {
+                p {
+                    color: gray;
+                    font-size: 0.8em;
+                }
+
+                h6 {
+                    font-size: 0.9em;
+                    padding-top: 2px;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                }
+
+            }
+
+            .additional {
+                .item-input-has-focus .label-md[stacked],
+                .input-has-focus .label-md[stacked],
+                .item-input-has-focus .label-md[floating],
+                .input-has-focus .label-md[floating],
+                    {
+                    color: #3DBFA1 !important;
+                }
+                ion-item{
+                    margin-top: 5px;
+                }
+
+                ion-label {
+                    font-size: 0.8em;
+                }
+
+                input {
+                    padding: 2px;
+                    margin: 0;
+                    font-size: 0.8em;
+                }
+
+            }
+        }
+
+
+    }
+    .bottom{
+        z-index: 2;
+        position: fixed;
+        bottom: 0;
+        text-align: center;
+        font-family: 'Poppins';
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: #3DBFA1;
+        color: white;
+    }
+
+}

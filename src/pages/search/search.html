@@ -1,0 +1,105 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+        <ion-title>Search Results</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-spinner [hidden]="clotheResult || foodResult || giftResult || bookResult || electronicResult"></ion-spinner>
+    <div class="empty" *ngIf="giftResult && giftResult.length == 0 && clotheResult && clotheResult.length == 0 && electronicResult && electronicResult.length == 0 && bookResult && bookResult.length == 0 && foodResult && foodResult.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No matching result !</h4>
+    </div>
+    <div class="gifts" *ngIf="giftResult">
+        <div class="gifts_grid">
+            <div class="gift" *ngFor="let gift of giftResult">
+                <ion-icon *ngIf="wishListsIds.indexOf(gift._id) == -1" (click)="addToWishList(gift)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(gift._id) != -1" (click)="removeFromWishList(gift)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(gift)">
+                    <img *ngIf="gift.giftImage.length==0" src="assets/imgs/gift_place.svg">
+                    <img *ngIf="gift.giftImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{gift.giftImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(gift)">{{gift.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of gift.category">{{cat}}</p>
+                <h4 class="price">₹{{gift.price}}</h4>
+                <button class="add" (click)="addToCart(gift)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="gifts" *ngIf="electronicResult">
+        <div class="gifts_grid">
+            <div class="gift" *ngFor="let electronic of electronicResult">
+                <ion-icon *ngIf="wishListsIds.indexOf(electronic._id) == -1" (click)="addToWishList(electronic)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(electronic._id) != -1" (click)="removeFromWishList(electronic)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(electronic)">
+                    <img *ngIf="electronic.electronicImage.length==0" src="assets/imgs/electronic_place.svg">
+                    <img *ngIf="electronic.electronicImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{electronic.electronicImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(electronic)">{{electronic.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of electronic.category">{{cat}}</p>
+                <h4 class="price">₹{{electronic.price}}</h4>
+                <button class="add" (click)="addToCart(electronic)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="gifts" *ngIf="foodResult">
+        <div class="gifts_grid">
+            <div class="gift" *ngFor="let food of foodResult">
+                <ion-icon *ngIf="wishListsIds.indexOf(food._id) == -1" (click)="addToWishList(food)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(food._id) != -1" (click)="removeFromWishList(food)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(food)">
+                    <img *ngIf="food.foodImage.length==0" src="assets/imgs/food_place.svg">
+                    <img *ngIf="food.foodImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{food.foodImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(food)">{{food.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of food.category">{{cat}}</p>
+                <h4 class="price">₹{{food.price}}</h4>
+                <button class="add" (click)="addToCart(food)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="gifts" *ngIf="bookResult">
+        <div class="gifts_grid">
+            <div class="gift" *ngFor="let book of bookResult">
+                <ion-icon *ngIf="wishListsIds.indexOf(book._id) == -1" (click)="addToWishList(book)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(book._id) != -1" (click)="removeFromWishList(book)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(book)">
+                    <img *ngIf="book.bookImage.length==0" src="assets/imgs/book_place.svg">
+                    <img *ngIf="book.bookImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{book.bookImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(book)">{{book.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of book.category">{{cat}}</p>
+                <h4 class="price">₹{{book.price}}</h4>
+                <button class="add" (click)="addToCart(book)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="gifts" *ngIf="clotheResult">
+        <div class="gifts_grid">
+            <div class="gift" *ngFor="let clothe of clotheResult">
+                <ion-icon *ngIf="wishListsIds.indexOf(clothe._id) == -1" (click)="addToWishList(clothe)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(clothe._id) != -1" (click)="removeFromWishList(clothe)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(clothe)">
+                    <img *ngIf="clothe.clotheImage.length==0" src="assets/imgs/clothe_place.svg">
+                    <img *ngIf="clothe.clotheImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{clothe.clotheImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(clothe)">{{clothe.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of clothe.category">{{cat}}</p>
+                <h4 class="price">₹{{clothe.price}}</h4>
+                <button class="add" (click)="openProduct(clothe)">View</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,45 @@
+<!--
+  Generated template for the GiftPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+        <ion-title>{{shop.name}}</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="search_bar">
+            <ion-searchbar (search)="onSearch($event)" (ionInput)="onInput($event)"  placeholder="Search brand or product" [(ngModel)]="myInput">
+            </ion-searchbar>
+        </div>
+    <ion-spinner [hidden]="gifts"></ion-spinner>
+    <div class="empty" *ngIf="gifts && gifts.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No data available !</h4>
+    </div>
+    <div class="gifts" *ngIf="gifts">
+        <div class="gifts_grid">
+            <div class="gift" *ngFor="let gift of gifts">
+                <ion-icon *ngIf="wishListsIds.indexOf(gift._id) == -1" (click)="addToWishList(gift)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(gift._id) != -1" (click)="removeFromWishList(gift)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(gift)">
+                    <img *ngIf="gift.giftImage.length==0" src="assets/imgs/gift_place.svg">
+                    <img *ngIf="gift.giftImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{gift.giftImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(gift)">{{gift.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of gift.category">{{cat}}</p>
+                <h4 class="price">₹{{gift.price}}</h4>
+                <button class="add" (click)=addToCart(gift)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</ion-content>

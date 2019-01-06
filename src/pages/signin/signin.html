@@ -1,0 +1,92 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Log In</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <h3>Sign in to RunnerBoxes</h3>
+            <div class="login">
+                <ion-segment [(ngModel)]="mode">
+                    <ion-segment-button value="login">
+                        Log In
+
+                    </ion-segment-button>
+                    <ion-segment-button value="signin">
+                        New user?
+                    </ion-segment-button>
+                </ion-segment>
+
+                <div [hidden]="forgot" [ngSwitch]="mode">
+                    <div *ngSwitchCase="'login'">
+                        <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+                            <ion-list inset class="no-border">
+                                <div>
+                                    <label>Email</label>
+                                    <input type="text" class="formControl" formControlName="email" placeholder="Enter email">
+                                    
+                                </div>
+                                <div margin-bottom>
+                                    <label>Password</label>
+
+                                    <input placeholder="Enter Password" class="formControl" type="password"
+                                    formControlName="password">
+                                    
+                                </div>
+
+
+                                <button [disabled]="!loginForm.valid" class="submit" color="secondary">Log In</button>
+                                <p (click)="openForgot()" style="padding-bottom: 10px">Forgot Password?</p>
+                            </ion-list>
+                        </form>
+                    </div>
+                    <div *ngSwitchCase="'signin'">
+                        <form [formGroup]="signinForm" (ngSubmit)="signIn()">
+                            <ion-list inset class="no-border">
+                                <div>
+                                    <label>Name</label>
+                                    <input type="text" class="formControl" placeholder="Enter Name"
+                                           formControlName="name">
+                                </div>
+                                <div>
+                                    <label>Email</label>
+                                    <input type="text" class="formControl" placeholder="Enter email"
+                                           formControlName="email">
+                                </div>
+                                <div>
+                                    <label>Mobile</label>
+                                    <input type="number" class="formControl" placeholder="Enter mobile number" formControlName="mobile">
+                                </div>
+                                <div>
+                                    <label>Password</label>
+                                    <input type="password" class="formControl" placeholder="Enter Password" formControlName="password">
+                                </div>
+                                <div>
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="formControl" placeholder="Re-enter Password" formControlName="rpassword">
+                                </div>
+                                <button [disabled]="!signinForm.valid || signinForm.get('password').value != signinForm.get('rpassword').value" class="submit" color="secondary">Sign Up</button>
+                            </ion-list>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>

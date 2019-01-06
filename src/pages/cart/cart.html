@@ -1,0 +1,74 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="secondary">
+        <ion-title>Cart</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="empty" *ngIf="isEmpty">
+        <img src="assets/imgs/empty.svg">
+        <h6>Your cart is currently empty !</h6>
+        <button (click)="continue()">Continue Shopping</button>
+    </div>
+    <div class="cart_items" *ngIf="cartItems && cartItems.length>0">
+        <div class="item" *ngFor="let item of cartItems">
+            <ion-grid>
+                <ion-row>
+                    <ion-col class="image_container" col-4>
+                        <div *ngIf="item.shop.category == 'Foods'">
+                            <img *ngIf="item.foodImage.length==0" src="assets/imgs/food_place.svg">
+                            <img *ngIf="item.foodImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{item.foodImage[0].slice(0)}}">
+                        </div>
+                        <div *ngIf="item.shop.category == 'Electronics'">
+                            <img *ngIf="item.electronicImage.length==0" src="assets/imgs/electronic_place.svg">
+                            <img *ngIf="item.electronicImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{item.electronicImage[0].slice(0)}}">
+                        </div>
+                        <div *ngIf="item.shop.category == 'Gifts'">
+                            <img *ngIf="item.giftImage.length==0" src="assets/imgs/gift_place.svg">
+                            <img *ngIf="item.giftImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{item.giftImage[0].slice(0)}}">
+                        </div>
+                        <div *ngIf="item.shop.category == 'Clothes'">
+                            <img *ngIf="item.clotheImage.length==0" src="assets/imgs/clothe_place.svg">
+                            <img *ngIf="item.clotheImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{item.clotheImage[0].slice(0)}}">
+                        </div>
+                        <div *ngIf="item.shop.category == 'Books'">
+                            <img *ngIf="item.bookImage.length==0" src="assets/imgs/book_place.svg">
+                            <img *ngIf="item.bookImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{item.bookImage[0].slice(0)}}">
+                        </div>
+                    </ion-col>
+                    <ion-col class="info" col-5>
+                        <h6>{{item.name}}</h6>
+                        <p class="price">₹{{item.price}}</p>
+                        <p (click)="remove(item)" class="remove">Remove</p>
+                    </ion-col>
+                    <ion-col class="amount" col-3>
+                        <ion-icon name="add-circle" (click)="increaseQuant(item)"></ion-icon>
+                        <p> {{ item.quantity }} </p>
+                        <ion-icon name="remove-circle" (click)="decreaseQuant(item)"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+
+</ion-content>
+<div class="bottom" *ngIf="cartItems.length>0">
+    <div class="total">
+        <p>Total ₹{{totalPrice}}</p>
+    </div>
+    <div *ngIf="isLoggedIn" class="proceed">
+        <p (click)="openOrder()">PROCEED TO CHECKOUT</p>
+    </div>
+    <div [hidden]="isLoggedIn" class="proceed">
+        <p (click)="login()">LOGIN TO PROCEED</p>
+    </div>
+</div>

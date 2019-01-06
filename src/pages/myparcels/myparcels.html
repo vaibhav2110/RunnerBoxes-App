@@ -1,0 +1,31 @@
+<!--
+  Generated template for the MyparcelsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>My Parcels</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-content>
+        <div class="order_items" *ngIf="parcels">
+            <div class="items" *ngFor="let item of parcels">
+                <div class="item">
+                    <h5>Parcel #{{item._id}}</h5>
+                    <h6>Status: {{item.status}}</h6>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-content>

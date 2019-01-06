@@ -1,0 +1,246 @@
+@font-face {
+    font-family: Poppins;
+    src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf) format("ttf");
+    font-weight: 400
+}
+
+page-product {
+    ion-navbar {
+
+        .cart {
+            background: transparent;
+            position: absolute !important;
+            right: 0px;
+            top: 6px;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .toolbar-title-md {
+            font-size: 1.2em !important;
+            font-weight: 400;
+        }
+
+        ion-title {
+            font-family: Poppins;
+
+        }
+    }
+
+    ion-content {
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+    }
+
+    .swiper-wrapper {}
+
+    .swiper-slide img {
+        width: 250px;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+    }
+
+    .swiper-container {
+        height: auto;
+    }
+
+    .product_imgs {
+        width: 100%;
+        height: 40%;
+        margin-top: 5%;
+
+        .img_container {
+            width: 70% !important;
+            height: 70%;
+            margin-left: 15%;
+            margin-right: 15%;
+            background: white;
+            border-radius: 5px;
+            height: 90%;
+            overflow: hidden;
+
+            img {
+                border-radius: 5px;
+                max-height: 80%;
+                max-width: 80%;
+                width: 250px !important;
+                height: 80%;
+            }
+        }
+    }
+
+    .info {
+        margin-left: 30px;
+        margin-top: 30px;
+
+        .price {
+            padding-bottom: 10px;
+            font-weight: bold;
+            color: #3DBFA1;
+            font-size: 1.2em;
+            font-family: 'Poppins';
+        }
+
+        .title {
+            font-size: 1.4em;
+            font-weight: bold;
+            font-family: 'Poppins';
+        }
+
+        .category {
+            padding-top: 5px;
+            color: gray;
+            width: 100%;
+            font-size: 0.8em;
+
+            ion-icon {
+                float: right;
+                padding-right: 30px;
+                font-weight: bold;
+                color: hotpink;
+                font-size: 1.8em !important;
+                position: relative;
+                top: -5px;
+            }
+        }
+
+
+    }
+
+    .sizes {
+        margin-top: 30px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 10px;
+        padding-left: 30px;
+
+        p {
+            font-family: 'Poppins';
+        }
+        .size_container{
+            display: flex;
+            color: gray;
+        }
+        .size{
+            margin-top: 10px;
+            margin-right: 15px;
+            height: 35px;
+            width: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid gray;
+            border-radius: 50%;
+        }
+        .size:hover{
+            background: #3DBFA1;
+            color: white;
+            border: none;
+        }
+    }
+    .description{
+        margin-top: 30px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 10px;
+        padding-left: 30px;
+        p {
+            font-family: 'Poppins';
+        }
+        .desc{
+            color: gray;
+            font-size: 0.9em;
+            padding-top: 5px;
+        }
+    }
+
+    .shop_details {
+        width: 100%;
+        margin-top: 30px;
+        padding-top: 20px;
+        margin-bottom: 80px;
+        font-family: 'Poppins';
+        border-top: 1px solid #3DBFA1;
+        padding-left: 30px;
+
+        h4 {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: gray;
+            font-size: 0.9em;
+        }
+    }
+
+    .bottom {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-size: .9em;
+        z-index: 2;
+
+        .add {
+            box-shadow: 0 -1px 25px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+            background: white;
+            color: #3DBFA1;
+            font-family: 'Poppins';
+        }
+
+        .buy {
+            box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+            background: #3DBFA1;
+            color: white;
+            font-family: 'Poppins';
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

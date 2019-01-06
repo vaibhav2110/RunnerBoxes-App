@@ -1,18 +1,166 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>RunnerBoxes</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+    <div class="top_content"  *ngIf="banners">
+        <div class="slide_show">
+            <ion-slides autoplay="5000" speed="500">
+                <ion-slide (click)="openClothes()" *ngIf="banners.fashionImage !=''" >
+                    <img src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{banners.fashionImage.slice(0)}}">
+                </ion-slide>
+                <ion-slide *ngIf="banners.foodImage !=''">
+                    <img (click)="openFoods()" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{banners.foodImage.slice(0)}}">
+                </ion-slide>
+                <ion-slide *ngIf="banners.electronicImage !=''">
+                    <img (click)="openElectronics()" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{banners.electronicImage.slice(0)}}">
+                </ion-slide>
+                <ion-slide *ngIf="banners.giftImage !=''" (click)="openGifts()">
+                    <img (click)="openGifts()" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{banners.giftImage.slice(0)}}">
+                </ion-slide>
+                <ion-slide *ngIf="banners.bookImage !=''" (click)="openBooks()">
+                    <img (click)="openBooks()" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{banners.bookImage.slice(0)}}">
+                </ion-slide>
+            </ion-slides>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+        </div>
+        <div class="search_bar">
+            <ion-searchbar (search)="onSearch($event)" placeholder="Search brand or product" [(ngModel)]="myInput">
+            </ion-searchbar>
+        </div>
+    </div>
+    <div class="categories">
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+        <div (click)="openClothes()" class="category" style="
+                background-image: url(assets/imgs/clothe_bg.png);
+                background-position: center; background-repeat: no-repeat">
+            <p>Fashion</p>
+        </div>
+        <div (click)="openFoods()" class="category" style="
+                background-image: url(assets/imgs/food_bg.png);
+                background-position: center; background-repeat: no-repeat">
+            <p>Foods</p>
+        </div>
+        <div (click)="openElectronics()" class="category" style="
+                background-image: url(assets/imgs/electronic_bg.png);
+                background-position: center; background-repeat: no-repeat">
+            <p>Electronics</p>
+        </div>
+        <div (click)="openBooks()" class="category" style="
+                background-image: url(assets/imgs/book_bg.png);
+                background-position: center; background-repeat: no-repeat">
+            <p>Books</p>
+        </div>
+        <div (click)="openGifts()" class="category" style="
+                background-image: url(assets/imgs/gift_bg.png);
+                background-position: center; background-repeat: no-repeat">
+            <p>Gifts</p>
+        </div>
+    </div>
+    <ion-spinner [hidden]="clothes || foods || electronics || gifts || books"></ion-spinner>
+    <div class="parcel" *ngIf="clothes">
+        <div class="title">
+            <img src="assets/imgs/mylogo.png">
+            <p>Delivery Service</p>
+        </div>
+        <div class="content">
+            <h4>Send parcel anywhere in your city</h4>
+            <button (click)="openParcel()">Continue</button>
+        </div>
+    </div>
+    <div *ngIf="clothes && clothes.length > 0" class="featured_clothes">
+        <p class="title">Featured Fashion</p>
+        <div class="clothes_grid">
+            <div class="clothe" *ngFor="let clothe of clothes">
+                <ion-icon *ngIf="wishListsIds.indexOf(clothe._id) == -1" (click)="addToWishList(clothe)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(clothe._id) != -1" (click)="removeFromWishList(clothe)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(clothe)">
+                    <img *ngIf="clothe.clotheImage.length == 0" src="assets/imgs/clothe_place.svg">
+                    <img *ngIf="clothe.clotheImage.length > 0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{clothe.clotheImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(clothe)">{{clothe.name}}</h4>
+                <p class="sub_category">{{clothe.category}}</p>
+                <h4 class="price">₹{{clothe.price}}</h4>
+                <button class="add" (click)="openProduct(clothe)">View</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="foods && foods.length > 0" class="featured_clothes">
+        <p class="title">Featured Foods</p>
+        <div class="clothes_grid">
+            <div class="clothe" *ngFor="let food of foods">
+                <ion-icon *ngIf="wishListsIds.indexOf(food._id) == -1" (click)="addToWishList(food)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(food._id) != -1" (click)="removeFromWishList(food)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(food)">
+                    <img *ngIf="food.foodImage.length == 0" src="assets/imgs/food_place.svg">
+                    <img *ngIf="food.foodImage.length > 0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{food.foodImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(food)">{{food.name}}</h4>
+                <p class="sub_category">{{food.category}}</p>
+                <h4 class="price">₹{{food.price}}</h4>
+                <button class="add" (click)=addToCart(food)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="electronics && electronics.length > 0" class="featured_clothes">
+        <p class="title">Featured Electronics</p>
+        <div class="clothes_grid">
+            <div class="clothe" *ngFor="let electronic of electronics">
+                <ion-icon *ngIf="wishListsIds.indexOf(electronic._id) == -1" (click)="addToWishList(electronic)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(electronic._id) != -1" (click)="removeFromWishList(electronic)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(electronic)">
+                    <img *ngIf="electronic.electronicImage.length == 0" src="assets/imgs/electronic_place.svg">
+                    <img *ngIf="electronic.electronicImage.length > 0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{electronic.electronicImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(electronic)">{{electronic.name}}</h4>
+                <p class="sub_category">{{electronic.category}}</p>
+                <h4 class="price">₹{{electronic.price}}</h4>
+                <button class="add" (click)=addToCart(electronic)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="gifts && gifts.length > 0" class="featured_clothes">
+        <p class="title">Featured Gifts</p>
+        <div class="clothes_grid">
+            <div class="clothe" *ngFor="let gift of gifts">
+                <ion-icon *ngIf="wishListsIds.indexOf(gift._id) == -1" (click)="addToWishList(gift)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(gift._id) != -1" (click)="removeFromWishList(gift)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(gift)">
+                    <img *ngIf="gift.giftImage.length == 0" src="assets/imgs/gift_place.svg">
+                    <img *ngIf="gift.giftImage.length > 0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{gift.giftImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(gift)">{{gift.name}}</h4>
+                <p class="sub_category">{{gift.category}}</p>
+                <h4 class="price">₹{{gift.price}}</h4>
+                <button class="add" (click)=addToCart(gift)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="books && books.length > 0" class="featured_clothes">
+        <p class="title">Featured Books</p>
+        <div class="clothes_grid">
+            <div class="clothe" *ngFor="let book of books">
+                <ion-icon *ngIf="wishListsIds.indexOf(book._id) == -1" (click)="addToWishList(book)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(book._id) != -1" (click)="removeFromWishList(book)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(book)">
+                    <img *ngIf="book.bookImage.length == 0" src="assets/imgs/book_place.svg">
+                    <img *ngIf="book.bookImage.length > 0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{book.bookImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(book)">{{book.name}}</h4>
+                <p class="sub_category">{{book.category}}</p>
+                <h4 class="price">₹{{book.price}}</h4>
+                <button class="add" (click)=addToCart(book)>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    
 </ion-content>

@@ -1,0 +1,276 @@
+@font-face {
+    font-family: Poppins;
+    src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf) format("ttf");
+    font-weight: 400
+}
+
+page-food {
+    .segment-md-secondary .segment-button.activated, .segment-md-secondary .segment-button.segment-activated{
+        border-color: #3DBFA1;
+    }
+    .toolbar-md{
+        min-height: 30px;
+    }
+    ion-toolbar{
+        padding: 0;
+        p{
+            color: #3DBFA1;
+            font-family: Poppins;
+            padding-bottom: 10px;
+            font-size: 1em;
+            margin: 0;
+            text-transform: none;
+        }
+    }
+    ion-navbar {
+        .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+            color: white;
+        }
+        .cart {
+            background: transparent;
+            position: absolute !important;
+            right: 0px;
+            top: 0px;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+            color: white;
+            font-size: 1.3em;
+            font-weight: 800;
+            ion-icon{
+                font-weight: bold;
+            }
+        }
+
+        .toolbar-title-md {
+            font-size: 1.2em !important;
+            font-weight: 400;
+        }
+
+        ion-title {
+            font-family: Poppins;
+            
+        }
+    }
+
+    ion-content {
+        background: white !important;
+        
+        .top{
+            height: 25%;
+            overflow: hidden;
+            img{
+                transform: translateY(-80px);
+            }
+            .blur{
+                height: 70px;
+                width: 120%;
+                margin-left: -10%;
+                background: white;
+                position: relative;
+                top: -135px;
+                
+                filter: blur(15px);
+            }
+        }
+        .title{
+            background: white;
+            z-index: 99;
+            text-align: center;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            h5{
+                z-index: 110;
+                font-family: 'Poppins';
+                color: #3DBFA1;
+                padding-bottom: 5px;
+            }
+            p{
+                color: gray;
+                padding: 0px 50px;
+                font-size: 0.8em;
+            }
+            h6{
+                font-family: 'Poppins';
+                padding-top: 5px;
+            }
+            .open{
+                color: #3DBFA1;
+            }
+            .closed{
+                color: indianred;
+                padding-top: 10px;
+            }
+        }
+        
+        .menu{
+            font-family: 'Poppins';
+            color: gray;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .menu h5{
+            font-size: 0.9em;
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+            
+        }
+        .menu::after{
+            margin-left: 47%;
+            height: 2px;
+            width: 6%;
+            background-color: #3DBFA1;
+            display: block;
+            content: '';
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        .spinner-md-crescent circle{
+            stroke: #3DBFA1;
+        }
+        .spinner-crescent circle{
+            stroke-width: 8px;
+        }
+        ion-spinner{
+            color: #3DBFA1;
+            font-size: 1.4em;
+            position: relative;
+            margin-left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: 20px;
+        }
+    }
+    .empty{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 60%;
+            margin-top: 10px;
+        }
+        h4{
+            font-family: 'Poppins';
+            color: #3DBFA1;
+        }
+    }
+    .foods {
+        background-color: #EAEAEA;
+        .foods_grid {
+            margin-top: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .food {
+            margin: 2%;
+            width: 46%;
+            background: white;
+            overflow: hidden;
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+
+            ion-icon {
+                color: hotpink;
+                font-weight: bold;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                z-index: 9;
+            }
+
+            .img_container {
+                margin: 8px;
+                height: 180px;
+                border-radius: 5px;
+                overflow: hidden;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            .name {
+                font-family: 'Poppins';
+                font-size: 0.9em;
+                font-weight: bold;
+                margin: 0 0 0 8px;
+            }
+
+            .sub_category {
+                color: gray;
+                font-size: 0.7em;
+                margin: 3px 0 0 8px;
+            }
+
+            .price {
+                font-family: 'Poppins';
+                font-size: 0.9em;
+                margin: 5px 0px 10px 8px;
+            }
+
+            .add {
+                background: #3DBFA1;
+                width: 90%;
+                margin-left: 5%;
+                padding: 8px 10px;
+                border-radius: 5px;
+                color: white;
+                font-family: 'Poppins';
+                font-size: 0.8em;
+                margin-bottom: 10px;
+                background-position: center;
+                transition: background 0.8s;
+                }
+
+                .add:hover {
+                    background: #49D9B8 radial-gradient(circle, transparent 1%, #3DBFA1 1%) center/15000%;
+                }
+
+                .add:active {
+                    background-color: #72E3C9;
+                    background-size: 100%;
+                    transition: background 0s;
+                }
+        }
+    }
+}

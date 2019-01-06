@@ -1,0 +1,62 @@
+<!--
+  Generated template for the ClothePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+        <ion-title>{{shop.name}}</ion-title>
+        <button (click)="openCart()" class="cart" ion-button>
+            <ion-icon name="ios-cart-outline"></ion-icon>
+        </button>
+    </ion-navbar>
+    <ion-toolbar>
+    <ion-segment [(ngModel)]="gender" color="secondary" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="men">
+        <p>Men</p>
+      </ion-segment-button>
+      <ion-segment-button value="women">
+        <p>Women</p>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="search_bar">
+            <ion-searchbar (search)="onSearch($event)" (ionInput)="onInput($event)"  placeholder="Search brand or product" [(ngModel)]="myInput">
+            </ion-searchbar>
+            <div class="filter" (click)="filter()">
+                <ion-icon name="funnel">
+                    <ion-select (ionChange)="setSelectedCat()" *ngIf="clothes" [(ngModel)]="cat" interface="popover" #selection>     
+                    <ion-option *ngFor="let cat of clothe_cat" [value]="cat">{{cat}}</ion-option>
+                    </ion-select>
+                </ion-icon>
+            </div>
+        </div>
+    <ion-spinner [hidden]="clothes"></ion-spinner>
+    <div class="empty" *ngIf="clothes && filteredClothes.length == 0">
+        <img src="assets/imgs/no_data.svg">
+        <h4>No data available !</h4>
+    </div>
+    <div class="clothes" *ngIf="clothes">
+        <div class="clothes_grid">
+            <div class="clothe" *ngFor="let clothe of filteredClothes">
+                <ion-icon *ngIf="wishListsIds.indexOf(clothe._id) == -1" (click)="addToWishList(clothe)" name="ios-heart-outline"></ion-icon>
+                <ion-icon *ngIf="wishListsIds.indexOf(clothe._id) != -1" (click)="removeFromWishList(clothe)" name="ios-heart"></ion-icon>
+                <div class="img_container" (click)="openProduct(clothe)">
+                    <img *ngIf="clothe.clotheImage.length==0" src="assets/imgs/clothe_place.svg">
+                    <img *ngIf="clothe.clotheImage.length>0" src="http://ec2-18-191-137-69.us-east-2.compute.amazonaws.com/{{clothe.clotheImage[0].slice(0)}}">
+                </div>
+                <h4 class="name" (click)="openProduct(clothe)">{{clothe.name}}</h4>
+                <p class="sub_category" *ngFor="let cat of clothe.category">{{cat}}</p>
+                <h4 class="price">₹{{clothe.price}}</h4>
+                <button class="add" (click)="openProduct(clothe)">View</button>
+            </div>
+        </div>
+    </div>
+</ion-content>
